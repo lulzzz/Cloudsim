@@ -128,7 +128,7 @@ public class smart_grid_cloud{
 		double cost = 3.0;              // the cost of using processing in this resource
 		double costPerMem = 0.05;		// the cost of using memory in this resource
 		double costPerStorage = 0.001;	// the cost of using storage in this resource
-		double costPerBw = 0.0;			// the cost of using bw in this resource
+		double costPerBw = 5.0;			// the cost of using bw in this resource
 		LinkedList<Storage> storageList = new LinkedList<Storage>();
 		DatacenterCharacteristics characteristics = new DatacenterCharacteristics(
                 arch, os, vmm, hostList, time_zone, cost, costPerMem, costPerStorage, costPerBw);
@@ -216,7 +216,7 @@ public class smart_grid_cloud{
 
 			// creating datacenter 
 			@SuppressWarnings("unused")
-			Datacenter datacenter0 = Create_Datacenter("Datacenter");
+			Datacenter cloud_datacenter = Create_Datacenter("Datacenter");
 
 			DatacenterBroker broker = createBroker();
 			int brokerId = broker.getId();
@@ -236,7 +236,6 @@ public class smart_grid_cloud{
 			CloudSim.stopSimulation();
 
 			printCloudletList(newList);
-
 			Log.printLine("Smart Grid Cloud finished!");
 		}
 		catch (Exception e)
