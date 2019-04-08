@@ -128,7 +128,7 @@ public class smart_grid_cloud{
 		double cost = 3.0;              // the cost of using processing in this resource
 		double costPerMem = 0.05;		// the cost of using memory in this resource
 		double costPerStorage = 0.001;	// the cost of using storage in this resource
-		double costPerBw = 5.0;			// the cost of using bw in this resource
+		double costPerBw = 0.2;			// the cost of using bw in this resource
 		LinkedList<Storage> storageList = new LinkedList<Storage>();
 		DatacenterCharacteristics characteristics = new DatacenterCharacteristics(
                 arch, os, vmm, hostList, time_zone, cost, costPerMem, costPerStorage, costPerBw);
@@ -231,11 +231,11 @@ public class smart_grid_cloud{
 			// start simulation 
 			CloudSim.startSimulation();
             // print result 
-			List<Cloudlet> newList = broker.getCloudletReceivedList();
+			List<Cloudlet> cloudletlist = broker.getCloudletReceivedList();
 
 			CloudSim.stopSimulation();
 
-			printCloudletList(newList);
+			printCloudletList(cloudletlist);
 			Log.printLine("Smart Grid Cloud finished!");
 		}
 		catch (Exception e)
