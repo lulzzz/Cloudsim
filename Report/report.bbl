@@ -27,4 +27,10 @@
   [Online]. Available: \url{http://www.cloudbus.org/cloudsim/}
 \BIBentrySTDinterwordspacing
 
+\bibitem{ok2}
+K.~{Nagamani}, C.~G. V.~N. {Prasad}, and K.~S. {Chatrapati}, ``A novel
+  framework for optimal component based data center architecture,'' in
+  \emph{2016 International Conference on Information Communication and Embedded
+  Systems (ICICES)}, Feb 2016, pp. 1--10.
+
 \end{thebibliography}
