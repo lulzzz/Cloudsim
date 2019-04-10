@@ -13,10 +13,12 @@ package org.cloudbus.cloudsim.examples;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.cloudbus.cloudsim.Cloudlet;
+import org.cloudbus.cloudsim.CloudletSchedulerSpaceShared;
 import org.cloudbus.cloudsim.CloudletSchedulerTimeShared;
 import org.cloudbus.cloudsim.Datacenter;
 import org.cloudbus.cloudsim.DatacenterBroker;
@@ -29,6 +31,7 @@ import org.cloudbus.cloudsim.UtilizationModel;
 import org.cloudbus.cloudsim.UtilizationModelFull;
 import org.cloudbus.cloudsim.Vm;
 import org.cloudbus.cloudsim.VmAllocationPolicySimple;
+import org.cloudbus.cloudsim.VmSchedulerSpaceShared;
 import org.cloudbus.cloudsim.VmSchedulerTimeShared;
 import org.cloudbus.cloudsim.core.CloudSim;
 import org.cloudbus.cloudsim.provisioners.BwProvisionerSimple;
@@ -64,7 +67,7 @@ public class CloudSimExample6 {
 		Vm[] vm = new Vm[vms];
 
 		for(int i=0;i<vms;i++){
-			vm[i] = new Vm(i, userId, mips, pesNumber, ram, bw, size, vmm, new CloudletSchedulerTimeShared());
+			vm[i] = new Vm(i, userId, mips, pesNumber, ram, bw, size, vmm, new CloudletSchedulerSpaceShared());
 			//for creating a VM with a space shared scheduling policy for cloudlets:
 			//vm[i] = Vm(i, userId, mips, pesNumber, ram, bw, size, priority, vmm, new CloudletSchedulerSpaceShared());
 
@@ -121,8 +124,8 @@ public class CloudSimExample6 {
 			//Datacenters are the resource providers in CloudSim. We need at list one of them to run a CloudSim simulation
 			@SuppressWarnings("unused")
 			Datacenter datacenter0 = createDatacenter("Datacenter_0");
-			@SuppressWarnings("unused")
-			Datacenter datacenter1 = createDatacenter("Datacenter_1");
+			//@SuppressWarnings("unused")
+			//Datacenter datacenter1 = createDatacenter("Datacenter_1");
 
 			//Third step: Create Broker
 			DatacenterBroker broker = createBroker();
@@ -194,7 +197,7 @@ public class CloudSimExample6 {
     				new BwProvisionerSimple(bw),
     				storage,
     				peList1,
-    				new VmSchedulerTimeShared(peList1)
+    				new VmSchedulerSpaceShared(peList1)
     			)
     		); // This is our first machine
 
@@ -287,7 +290,11 @@ public class CloudSimExample6 {
 	private static void printCloudletList(List<Cloudlet> list) {
 		int size = list.size();
 		Cloudlet cloudlet;
-
+        List<Double> CPUtime = new ArrayList<Double>();
+        List <Double>  cputime = new ArrayList<Double>();
+        List <Double>  start_time = new ArrayList<Double>();
+        List<Double>   starttime = new ArrayList<Double>();
+        List<Double>   endtime = new ArrayList<Double>();
 		String indent = "    ";
 		Log.printLine();
 		Log.printLine("========== OUTPUT ==========");
@@ -307,6 +314,41 @@ public class CloudSimExample6 {
 						indent + indent + dft.format(cloudlet.getExecStartTime())+ indent + indent + indent + dft.format(cloudlet.getFinishTime()));
 			}
 		}
+		
+		
+		for (int i = 0; i < size; i++) {
+			cloudlet = list.get(i);
+		    if (cloudlet.getCloudletStatus() == Cloudlet.SUCCESS){
+				cputime.add(cloudlet.getActualCPUTime());
+				start_time.add(cloudlet.getExecStartTime());
+			}
+		}
+		for (int i = 0; i < size; i++) {
+			cloudlet = list.get(i);
+			if (cloudlet.getCloudletStatus() == Cloudlet.SUCCESS){
+		          if(!CPUtime.contains(cloudlet.getActualCPUTime())) {
+		        	  CPUtime.add(cloudlet.getActualCPUTime());
+		        	 }
+		          if(!starttime.contains(cloudlet.getExecStartTime())) {
+		        	  starttime.add(cloudlet.getExecStartTime());
+		        	}
+		          if(!endtime.contains(cloudlet.getFinishTime())) {
+		        	  endtime.add(cloudlet.getFinishTime());
+		        	 }
+			}
+		}
+		
+         int n=0;
+		for (int i=0; i< CPUtime.size();i++) {
+			
+               n= Collections.frequency(cputime,CPUtime.get(i));
+                Log.printLine(dft.format(n)+" "+"Cloudlets successfully finish in "+ dft.format(CPUtime.get(i))+"s" );
+		}
+		Log.printLine();
+		for (int i=0; i< starttime.size();i++) {
+			 n= Collections.frequency(start_time,starttime.get(i));
+			 Log.printLine(dft.format(n)+" "+"Cloudlets executes in time "+ dft.format(starttime.get(i))+"~" + dft.format(endtime.get(i))+"s");
+		 }
 
 	}
 }

@@ -31,8 +31,8 @@ public class smart_grid_cloud{
 	private static List<Cloudlet> cloudletList; // store all cloudlets 
     private static List<Vm> vmlist; // store all VM
 	private static int VM_number =50;
-	private static int cloudlet_number = 10; 
-	private static CloudletSchedulerTimeShared cloudlet_scheduler =  new CloudletSchedulerTimeShared();
+	private static int cloudlet_number = 150; 
+	private static CloudletSchedulerSpaceShared cloudlet_scheduler =  new CloudletSchedulerSpaceShared();
 	private static List<Vm> Create_VM(int user_ID, int numbers_of_VM){
 		LinkedList<Vm> list = new LinkedList<Vm>();
 		//configure VM 
@@ -82,7 +82,7 @@ public class smart_grid_cloud{
 		List<Pe> peList1 = new ArrayList<Pe>();
 		int mips = 1000; // computing power of each core
 		// add  cores to each host machine 
-		for (int i =0; i < VM_number; i ++ ) {
+		for (int i =0; i < 100; i ++ ) {
 		peList1.add(new Pe(i, new PeProvisionerSimple(mips)));
 		}
 		// configuring host
@@ -98,13 +98,13 @@ public class smart_grid_cloud{
     				new BwProvisionerSimple(bw),
     				storage,
     				peList1,
-    				new VmSchedulerTimeShared(peList1)
+    				new VmSchedulerSpaceShared(peList1)
     			)
     		);
 		// create another host machine with 1 cores
 		List<Pe> peList2 = new ArrayList<Pe>();
 		// add 1 core to each host machine 
-		for (int i =0; i < VM_number; i ++ ) {
+		for (int i =0; i < 100; i ++ ) {
 			peList2.add(new Pe(i, new PeProvisionerSimple(mips)));
 		}
 		hostId++;
@@ -116,7 +116,7 @@ public class smart_grid_cloud{
     				new BwProvisionerSimple(bw),
     				storage,
     				peList2,
-    				new VmSchedulerTimeShared(peList2)
+    				new VmSchedulerSpaceShared(peList2)
     			)
     		);
 		
@@ -215,10 +215,9 @@ public class smart_grid_cloud{
 
 			// creating datacenter 
 			@SuppressWarnings("unused")
-
-			Datacenter datacenter = Create_Datacenter("Datacenter");
-
-			Datacenter cloud_datacenter = Create_Datacenter("Datacenter");
+			Datacenter smart_grid_cloud_data_center = Create_Datacenter("Datacenter_0");
+			//@SuppressWarnings("unused")
+			//Datacenter datacenter1 = Create_Datacenter("Datacenter_1");
 
 
 			DatacenterBroker broker = createBroker();
