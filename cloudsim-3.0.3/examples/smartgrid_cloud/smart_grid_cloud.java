@@ -31,12 +31,12 @@ public class smart_grid_cloud{
 	private static List<Cloudlet> cloudletList; // store all cloudlets 
     private static List<Vm> vmlist; // store all VM
 	private static int VM_number =50;
-	private static int cloudlet_number = 500; 
+	private static int cloudlet_number = 10; 
 	private static CloudletSchedulerTimeShared cloudlet_scheduler =  new CloudletSchedulerTimeShared();
 	private static List<Vm> Create_VM(int user_ID, int numbers_of_VM){
 		LinkedList<Vm> list = new LinkedList<Vm>();
 		//configure VM 
-		long size = 256; // image size of VM (MB)
+		long size = 1000; // image size of VM (MB)
 		int  ram = 512; //  VM memory (MB)
 		int  mips = 250; //  computing power of VM (million instruction per second)
 		long bw = 1024; // bandwidth 1Gbps
@@ -56,7 +56,7 @@ public class smart_grid_cloud{
 	private static List<Cloudlet> Create_Cloudlet(int user_ID, int number_of_cloudlets){
 		LinkedList<Cloudlet> list = new LinkedList<Cloudlet>();
 		// cloudlet configuration
-		long length = 1000; // mips 
+		long length = 1500; // mips 
 		long fileSize = 300;   // MB
 		long outputSize = 300; // MB
 		int pesNumber = 1; // no. of CPU
@@ -215,11 +215,11 @@ public class smart_grid_cloud{
 
 			// creating datacenter 
 			@SuppressWarnings("unused")
-<<<<<<< HEAD
+
 			Datacenter datacenter = Create_Datacenter("Datacenter");
-=======
+
 			Datacenter cloud_datacenter = Create_Datacenter("Datacenter");
->>>>>>> 8fa242b415dde0bd5be20ad04537464b50c072a4
+
 
 			DatacenterBroker broker = createBroker();
 			int brokerId = broker.getId();
