@@ -31,8 +31,8 @@ public class smart_grid_cloud{
 	private static List<Cloudlet> cloudletList; // store all cloudlets 
     private static List<Vm> vmlist; // store all VM
 	private static int VM_number =50;
-	private static int cloudlet_number = 150; 
-	private static CloudletSchedulerSpaceShared cloudlet_scheduler =  new CloudletSchedulerSpaceShared();
+	private static int cloudlet_number = 355; 
+	private static CloudletSchedulerTimeShared cloudlet_scheduler =  new CloudletSchedulerTimeShared();
 	private static List<Vm> Create_VM(int user_ID, int numbers_of_VM){
 		LinkedList<Vm> list = new LinkedList<Vm>();
 		//configure VM 
@@ -56,7 +56,7 @@ public class smart_grid_cloud{
 	private static List<Cloudlet> Create_Cloudlet(int user_ID, int number_of_cloudlets){
 		LinkedList<Cloudlet> list = new LinkedList<Cloudlet>();
 		// cloudlet configuration
-		long length = 1500; // mips 
+		long length = 500; // mips 
 		long fileSize = 300;   // MB
 		long outputSize = 300; // MB
 		int pesNumber = 1; // no. of CPU
@@ -98,7 +98,7 @@ public class smart_grid_cloud{
     				new BwProvisionerSimple(bw),
     				storage,
     				peList1,
-    				new VmSchedulerSpaceShared(peList1)
+    				new VmSchedulerTimeShared(peList1)
     			)
     		);
 		// create another host machine with 1 cores
@@ -116,7 +116,7 @@ public class smart_grid_cloud{
     				new BwProvisionerSimple(bw),
     				storage,
     				peList2,
-    				new VmSchedulerSpaceShared(peList2)
+    				new VmSchedulerTimeShared(peList2)
     			)
     		);
 		
@@ -216,8 +216,7 @@ public class smart_grid_cloud{
 			// creating datacenter 
 			@SuppressWarnings("unused")
 			Datacenter smart_grid_cloud_data_center = Create_Datacenter("Datacenter_0");
-			//@SuppressWarnings("unused")
-			//Datacenter datacenter1 = Create_Datacenter("Datacenter_1");
+
 
 
 			DatacenterBroker broker = createBroker();

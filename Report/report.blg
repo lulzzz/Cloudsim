@@ -13,47 +13,48 @@ Warning--entry type for "ok" isn't style-file defined
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty journal in ok3
 
 Done.
-You've used 2 entries,
+You've used 3 entries,
             4087 wiz_defined-function locations,
-            832 strings with 7621 characters,
-and the built_in function-call counts, 1183 in all, are:
-= -- 76
-> -- 21
-< -- 5
-+ -- 11
-- -- 4
-* -- 66
-:= -- 196
-add.period$ -- 4
-call.type$ -- 2
-change.case$ -- 2
-chr.to.int$ -- 12
-cite$ -- 2
-duplicate$ -- 85
-empty$ -- 109
-format.name$ -- 5
-if$ -- 254
+            837 strings with 7751 characters,
+and the built_in function-call counts, 2063 in all, are:
+= -- 148
+> -- 39
+< -- 16
++ -- 23
+- -- 6
+* -- 108
+:= -- 316
+add.period$ -- 6
+call.type$ -- 3
+change.case$ -- 3
+chr.to.int$ -- 39
+cite$ -- 4
+duplicate$ -- 145
+empty$ -- 171
+format.name$ -- 8
+if$ -- 462
 int.to.chr$ -- 0
-int.to.str$ -- 2
-missing$ -- 18
-newline$ -- 31
-num.names$ -- 2
-pop$ -- 53
+int.to.str$ -- 3
+missing$ -- 26
+newline$ -- 34
+num.names$ -- 3
+pop$ -- 70
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 80
+skip$ -- 148
 stack$ -- 0
-substring$ -- 29
-swap$ -- 55
-text.length$ -- 1
+substring$ -- 93
+swap$ -- 112
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 2
-warning$ -- 0
-while$ -- 5
-width$ -- 3
-write$ -- 40
-(There was 1 warning)
+type$ -- 3
+warning$ -- 1
+while$ -- 9
+width$ -- 4
+write$ -- 49
+(There were 2 warnings)
