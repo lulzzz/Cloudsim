@@ -29,7 +29,7 @@ The basic cloud architectures enable supports for maximizing the availability an
 \caption{The Smart Grid Cloud Architecture}
 \end{figure}
 
-\indent The data center has two host machines or servers and each host has the configuration: RAM = 50 GB,  storage  = 10000 GB , bandwidth = 10 Gbps and  100 CPU cores with processing power of 1000 MIPS per cores .  We divide the city where has 40000 users into 50 regions and each region is served by 1 VM.  Therefore, number of VM is equal to 50.  Each VM has the configuration: image size = 1000 MB, RAM= 512 MB and 4 CPU cores with total processing power of 250 MIPS. The total storage and processing power of two host should be larger enough to handle all data  generated from these 50 regions.  The cloudlet is the  job or task that users submit to cloud for processing and has fixed instruction length and data transfer size. For simplicity, in our simulation all user submit cloudlets with same configuration: length = 1500 MIPS , file size = 300 MB and output size = 300 MB.
+\indent The data center has two host machines or servers and each host has the configuration: RAM = 50 GB,  storage  = 10000 GB , bandwidth = 10 Gbps and  100 CPU cores with processing power of 1000 MIPS per cores .  We divide the city where has 30000 users into 50 regions and each region is served by 1 VM.  Therefore, number of VM is equal to 50.  Each VM has the configuration: image size = 1000 MB, RAM= 512 MB and 4 CPU cores with total processing power of 250 MIPS. The total storage and processing power of two host should be larger enough to handle all data  generated from these 50 regions.  The cloudlet is the  job or task that users submit to cloud for processing and has fixed instruction length and data transfer size. For simplicity, in our simulation all user submit cloudlets with same configuration: length = 1500 MIPS , file size = 300 MB and output size = 300 MB.
 \indent As shown in figure 1, users submit the cloudlets to cloud for processing via data center broker.  The broker search status of all computing resource and data center characteristics that previously registered by data center in cloud information service (CIS), then allocate virtual machines in the hosts to process cloudlets. After all cloudlets is completed, the broker destroys all allocated VMs.
 
 \section{Time-shared and Space-Shared Allocation Policy}
@@ -40,13 +40,13 @@ First Served (FCFS) and Round Robin (RR) algorithms\cite{ok3}. At the host level
 \indent 2. Each host has only 2 available CPU cores.\\
 \indent 3. Users request 2 VMs (VM 1, VM 2)and each VM requires 2 CPU cores.\\
 \indent 4. Users submit 8 cloudlets to cloud and each cloudlet requires 1 CPU core to process. \\
-\indent 5. VM 1 runs cloudlet 1,2,3,4 and VM 2 runs cloudlet 5,6,7,8
+\indent 5. VM 1 runs cloudlet 1,2,3,4 and VM 2 runs cloudlet 5,6,7,8.
 
 
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[scale=0.5]{space_vm_space_cloudlet.png}
+\includegraphics[scale=0.4]{space_vm_space_cloudlet.png}
 \caption{Space Shared Allocation Policy for VMs and Cloudlets}
 \end{figure}
 

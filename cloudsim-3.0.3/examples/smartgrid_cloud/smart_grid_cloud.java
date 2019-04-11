@@ -31,7 +31,7 @@ public class smart_grid_cloud{
 	private static List<Cloudlet> cloudletList; // store all cloudlets 
     private static List<Vm> vmlist; // store all VM
 	private static int VM_number =50;
-	private static int cloudlet_number = 355; 
+	private static int cloudlet_number = 200; 
 	private static CloudletSchedulerTimeShared cloudlet_scheduler =  new CloudletSchedulerTimeShared();
 	private static List<Vm> Create_VM(int user_ID, int numbers_of_VM){
 		LinkedList<Vm> list = new LinkedList<Vm>();
@@ -40,7 +40,7 @@ public class smart_grid_cloud{
 		int  ram = 512; //  VM memory (MB)
 		int  mips = 250; //  computing power of VM (million instruction per second)
 		long bw = 1024; // bandwidth 1Gbps
-		int pesNumber = 4; // number of CPU 
+		int pesNumber = 100; // number of CPU 
 		String VM_name = "Xen"; // VM_name
 		Vm[] vm = new Vm[numbers_of_VM];
 		Log.printLine("Creating VM ......");
@@ -56,7 +56,7 @@ public class smart_grid_cloud{
 	private static List<Cloudlet> Create_Cloudlet(int user_ID, int number_of_cloudlets){
 		LinkedList<Cloudlet> list = new LinkedList<Cloudlet>();
 		// cloudlet configuration
-		long length = 500; // mips 
+		long length = 4000; // mips 
 		long fileSize = 300;   // MB
 		long outputSize = 300; // MB
 		int pesNumber = 1; // no. of CPU
@@ -80,16 +80,16 @@ public class smart_grid_cloud{
 		List<Host> hostList = new ArrayList<Host>();
 		// creating list of CPU for each host machine, In our simulation with choose 1 core per machine 
 		List<Pe> peList1 = new ArrayList<Pe>();
-		int mips = 1000; // computing power of each core
+		int mips = 25000; // computing power of each core
 		// add  cores to each host machine 
-		for (int i =0; i < 100; i ++ ) {
+		for (int i =0; i < 500; i ++ ) {
 		peList1.add(new Pe(i, new PeProvisionerSimple(mips)));
 		}
 		// configuring host
 		int hostId=0;
-		int ram = 51200; //host memory 50 GB
+		int ram = 512000000; //host memory 50 GB
 		long storage = 5120000; //host storage 10000 GB
-		int bw = 102400; // bandwidth 100 Gbps
+		int bw = 10240000; // bandwidth 100 Gbps
 		// create first host machine with 4 cores 
 		hostList.add(
     			new Host(
@@ -104,13 +104,13 @@ public class smart_grid_cloud{
 		// create another host machine with 1 cores
 		List<Pe> peList2 = new ArrayList<Pe>();
 		// add 1 core to each host machine 
-		for (int i =0; i < 100; i ++ ) {
+		for (int i =0; i < 2000; i ++ ) {
 			peList2.add(new Pe(i, new PeProvisionerSimple(mips)));
 		}
 		hostId++;
 
 		hostList.add(
-    			new Host(
+   			new Host(
     				hostId,
     				new RamProvisionerSimple(ram),
     				new BwProvisionerSimple(bw),
@@ -118,7 +118,7 @@ public class smart_grid_cloud{
     				peList2,
     				new VmSchedulerTimeShared(peList2)
     			)
-    		);
+   		);
 		
 	  // configuring datacenter 
 		String arch = "x86";      // system architecture
@@ -202,12 +202,13 @@ public class smart_grid_cloud{
 			 Log.printLine(dft.format(n)+" "+"Cloudlets executes in time "+ dft.format(starttime.get(i))+"~" + dft.format(endtime.get(i))+"s");
 		 }
 	}	
+	
 	public static void main(String[] args) {
 
 	    Log.printLine("Start Smart Grid Cloud Simulation.....");	
 	      try {
 
-			int number_of_user = 40000;   // number of cloud users
+			int number_of_user = 30000;   // number of cloud users
 			Calendar calendar = Calendar.getInstance();
 			boolean trace_flag = false;  // mean trace events
 

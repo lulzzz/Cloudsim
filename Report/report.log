@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.3.6)  10 APR 2019 23:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.3.6)  10 APR 2019 23:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -592,7 +592,7 @@ Package pdftex.def Info: Smart_Grid_Cloud.png  used on input line 28.
 File: space_vm_space_cloudlet.png Graphic file (type png)
 <use space_vm_space_cloudlet.png>
 Package pdftex.def Info: space_vm_space_cloudlet.png  used on input line 49.
-(pdftex.def)             Requested size: 294.09802pt x 150.06026pt.
+(pdftex.def)             Requested size: 235.27483pt x 120.04637pt.
  [3 <./space_vm_space_cloudlet.png>]
 (./report.bbl) [4] (./report.aux) ) 
 Here is how much of TeX's memory you used:
@@ -607,7 +607,7 @@ Here is how much of TeX's memory you used:
 ublic/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmti12.pfb>
-Output written on report.pdf (4 pages, 177801 bytes).
+Output written on report.pdf (4 pages, 177805 bytes).
 PDF statistics:
  37 PDF objects out of 1000 (max. 8388607)
  23 compressed objects within 1 object stream

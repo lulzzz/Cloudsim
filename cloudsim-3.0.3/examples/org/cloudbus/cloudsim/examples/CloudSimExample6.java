@@ -67,7 +67,7 @@ public class CloudSimExample6 {
 		Vm[] vm = new Vm[vms];
 
 		for(int i=0;i<vms;i++){
-			vm[i] = new Vm(i, userId, mips, pesNumber, ram, bw, size, vmm, new CloudletSchedulerSpaceShared());
+			vm[i] = new Vm(i, userId, mips, pesNumber, ram, bw, size, vmm, new CloudletSchedulerTimeShared());
 			//for creating a VM with a space shared scheduling policy for cloudlets:
 			//vm[i] = Vm(i, userId, mips, pesNumber, ram, bw, size, priority, vmm, new CloudletSchedulerSpaceShared());
 
@@ -132,7 +132,7 @@ public class CloudSimExample6 {
 			int brokerId = broker.getId();
 
 			//Fourth step: Create VMs and Cloudlets and send them to broker
-			vmlist = createVM(brokerId,20); //creating 20 vms
+			vmlist = createVM(brokerId,50); //creating 20 vms
 			cloudletList = createCloudlet(brokerId,40); // creating 40 cloudlets
 
 			broker.submitVmList(vmlist);
@@ -169,7 +169,7 @@ public class CloudSimExample6 {
 		//    a Machine.
 		List<Pe> peList1 = new ArrayList<Pe>();
 
-		int mips = 1000;
+		int mips = 100000;
 
 		// 3. Create PEs and add these into the list.
 		//for a quad-core machine, a list of 4 PEs is required:
@@ -186,9 +186,9 @@ public class CloudSimExample6 {
 
 		//4. Create Hosts with its id and list of PEs and add them to the list of machines
 		int hostId=0;
-		int ram = 2048; //host memory (MB)
+		int ram = 20480; //host memory (MB)
 		long storage = 1000000; //host storage
-		int bw = 10000;
+		int bw = 100000;
 
 		hostList.add(
     			new Host(
