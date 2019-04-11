@@ -31,7 +31,7 @@ public class smart_grid_cloud{
 	private static List<Cloudlet> cloudletList; // store all cloudlets 
     private static List<Vm> vmlist; // store all VM
 	private static int VM_number =50;
-	private static int cloudlet_number = 200; 
+	private static int cloudlet_number = 300; 
 	private static CloudletSchedulerTimeShared cloudlet_scheduler =  new CloudletSchedulerTimeShared();
 	private static List<Vm> Create_VM(int user_ID, int numbers_of_VM){
 		LinkedList<Vm> list = new LinkedList<Vm>();
@@ -56,7 +56,7 @@ public class smart_grid_cloud{
 	private static List<Cloudlet> Create_Cloudlet(int user_ID, int number_of_cloudlets){
 		LinkedList<Cloudlet> list = new LinkedList<Cloudlet>();
 		// cloudlet configuration
-		long length = 4000; // mips 
+		long length = 1500; // mips 
 		long fileSize = 300;   // MB
 		long outputSize = 300; // MB
 		int pesNumber = 1; // no. of CPU
@@ -80,7 +80,7 @@ public class smart_grid_cloud{
 		List<Host> hostList = new ArrayList<Host>();
 		// creating list of CPU for each host machine, In our simulation with choose 1 core per machine 
 		List<Pe> peList1 = new ArrayList<Pe>();
-		int mips = 25000; // computing power of each core
+		int mips = 250; // computing power of each core
 		// add  cores to each host machine 
 		for (int i =0; i < 500; i ++ ) {
 		peList1.add(new Pe(i, new PeProvisionerSimple(mips)));
