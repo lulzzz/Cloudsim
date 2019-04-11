@@ -21,7 +21,7 @@ The runtime simulation is done to investigate the effect of hardware configurati
 
 \section{Cloud-Based Data Center Architectures}
 
-The basic cloud architectures enable supports for maximizing the availability and increasing demand of computing power and data storage\cite{ok2}. In our experiment, the cloud computing service is provided by one power company. Therefore, only 1 Cloud Service Provider (CSP) or 1 data center is required in our simulation. The data center is accountable for providing seamless infrastructure services for all cloud users in the city. In order to achieved higher utilization of computing, the virtualization of hardware is used and allocating computing hardware on user's request. The advantage of virtualization is that the service provider is not obligated to allocate all  hardware resources in advance and charge users based on usage of storage and bandwidth. In addition, it can also prevent applications from interrupting each other during execution, and provide higher data security. The detail of cloud-based data center architectures are displayed in figure 1.
+The basic cloud architectures enable supports for maximizing the availability and increasing demand of computing power and data storage\cite{ok2}. In our experiment, the cloud computing service is provided by one power company. Therefore, only 1 Cloud Service Provider (CSP) or 1 data center is required in our simulation. The data center is accountable for providing seamless infrastructure services for all cloud users in the city. In order to achieved higher utilization of computing, the virtualization of hardware is used and allocating computing hardware on user's request. The advantage of virtualization is that the service provider is not obligated to allocate all  hardware resources in advance and charge users based on usage of storage, memory and bandwidth. In addition, it can also prevent applications from interrupting each other during execution, and provide higher data security. The detail of cloud-based data center architectures are displayed in figure 1.
 
 \begin{figure}[ht!]
 \centering
@@ -30,7 +30,7 @@ The basic cloud architectures enable supports for maximizing the availability an
 \end{figure}
 
 \indent The data center has two host machines or servers and each host has the configuration: RAM = 50 GB,  storage  = 10000 GB , bandwidth = 10 Gbps and  2500 CPU cores with processing power of 250 MIPS per core.  We divide the city where has 30000 users into 50 regions and each region is served by 1 VM.  Therefore, number of VM is equal to 50.  Each VM has the configuration: image size = 1000 MB, RAM= 512 MB and 100 CPU cores with processing power of 250 MIPS per core. The total storage and processing power of two host should be larger enough to handle all data  generated from these 50 regions.  The cloudlet is the  job or task that users submit to cloud for processing and has fixed instruction length and data transfer size. For simplicity, in our simulation all user submit cloudlets with same configuration: length = 1500 MIPS , file size = 300 MB and output size = 300 MB.
-\indent As shown in figure 1, users submit the cloudlets to cloud for processing via data center broker.  The broker search status of all computing resource and data center characteristics that previously registered by data center in cloud information service (CIS), then allocate virtual machines in the hosts to process cloudlets. After all cloudlets is completed, the broker destroys all allocated VMs.
+\indent As shown in figure 1, users submit the cloudlets to cloud for processing via data center broker.  The broker search status of all computing resource and data center characteristics that previously registered by data center in cloud information service (CIS), then allocate virtual machines in the hosts to process cloudlets. After all cloudlets is completed, the broker destroys all allocated VMs. 
 
 \section{Time-shared and Space-Shared Allocation Policy}
 Since the intuition of cloud provider is to grow company profit by maximizing user's satisfaction. The effective allocation of resources and tasks is key factor to improve user's experiences. Cloudsim provides time-shared allocation and space-shared allocation policies at both host level and VM level.  These two policies works similar to First Come
@@ -43,15 +43,38 @@ First Served (FCFS) and Round Robin (RR) algorithms\cite{ok3}. At the host level
 \indent 5. VM 1 runs cloudlet 1,2,3,4 and VM 2 runs cloudlet 5,6,7,8.
 
 
-
 \begin{figure}[ht!]
 \centering
 \includegraphics[scale=0.4]{space_vm_space_cloudlet.png}
-\caption{Space Shared Allocation Policy for VMs and Cloudlets}
+\caption{Space-Shared Allocation Policy for VMs and Cloudlets}
 \end{figure}
 
+\indent  Figure 2 illustrates that space-shared allocation policy applies at both host and VM level.  At the host level,  Each VM requires 2 CPU core to  process their cloudlets . Hence VM 2 has to wait  for VM 1 finishes, and then executes its cloutlets.  Within each VM,  since each cludlet requires 1 CPU core and they cannot share same CPU core at same time. Therefore, only  2  cloudlets can execute at give time instance.  The second 2 cloultes have to wait until the first 2 cloudlets finish, and then start their own executions.\\
+\indent Figure 3 illustrates space-shared allocation policy for VMs and time-shared allocation for cloudles. At the host level,  VM 2 has to wait for VM 1 finish in order to start its executions.  At the VM level,  the time-shared policy allow them to share same CPU core while each cloudlet require 1 CPU core. Therefor 2 cloudlets can share one CPU core, and 4 cloudlets can execute simultaneously. Since each CPU core is shared by 2 cloudlets, the execution time of each cloudlet become longer compared to previous scheme in figure 2.
+\newpage
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=0.4]{space_vm_time_cloudlet.png}
+\caption{Space-shared Allocation for VM and Time-Shared Allocation for Cloudlets}
+\end{figure}
 
+\indent Figure 4 illustrates time-shared allocation policy for VMs and cloudlets. At the host level,  2 VMs can share 2 CPU cores concurrently. At the VM level,  2 cloudlets share 1 CPU cores at same time. Overall, 1 CPU core is shared by 4  cloudlets, consequently it takes much longer to execute them compared to the scheme in Figure 3.
 
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=0.4]{time_vm_time_cloudlet.png}
+\caption{Time-Shared Allocation Policy for VM and Cloudlets}
+\end{figure}
+
+\indent Figure 5  illustrates that  time-shared allocation for VMs and space-shared allocation for cloudlets.  At the host level,  2 VMs can share 2 CPU cores at same times. At the VM level, since each cloudlets can not share the same CPU core, therefore only 2 cloudlet are allow to run at give time instance, the second 2 cloudlets must wait for first 2 cloudlets finish and then start execution. 
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=0.4]{time_vm_space_cloudlet.png}
+\caption{Time-Shared Allocation Policy for VM and Cloudlets}
+\end{figure}
+
+\section{Simulation Results }
 
 \newpage
 \bibliographystyle{IEEEtran}
